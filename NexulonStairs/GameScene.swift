@@ -3,8 +3,8 @@ import SpriteKit
 class GameScene: SKScene {
 
     // MARK: - Constants
-    private let stairWidth: CGFloat = 70
-    private let stairHeight: CGFloat = 16
+    private let stairWidth: CGFloat = 100
+    private let stairHeight: CGFloat = 22
     private let stairGap: CGFloat = 55
     private let playerSize: CGFloat = 20
     // Fire tuned so player has ~2 seconds of breathing room per stair
