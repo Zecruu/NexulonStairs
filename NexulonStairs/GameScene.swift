@@ -158,14 +158,18 @@ class GameScene: SKScene {
 
     // MARK: - Stair Generation
     private func generateStairs(count: Int, startY: CGFloat) {
-        let lastColumn = stairs.last?.column ?? currentColumn
+        // Each stair is exactly 1 column away from the previous one
+        // so the player can always reach it with a single left/right tap
+        var prevCol = stairs.last?.column ?? currentColumn
 
-        var prevCol = lastColumn
         for i in 0..<count {
             let y = startY + CGFloat(i) * stairGap
 
-            // Pick a different column than the previous stair
-            var possibleColumns = [0, 1, 2].filter { $0 != prevCol }
+            // Only allow columns that are 1 step away
+            var possibleColumns: [Int] = []
+            if prevCol > 0 { possibleColumns.append(prevCol - 1) }     // left
+            if prevCol < 2 { possibleColumns.append(prevCol + 1) }     // right
+
             let col = possibleColumns.randomElement()!
 
             let stair = createStair(at: CGPoint(x: columnX[col], y: y))
@@ -207,21 +211,22 @@ class GameScene: SKScene {
         let nextStair = stairs[nextIndex]
         let nextCol = nextStair.column
 
-        // Determine which direction the next stair is relative to current position
-        let nextIsLeft = nextCol < currentColumn
-        let nextIsRight = nextCol > currentColumn
+        // Player taps left = try to move 1 column left
+        // Player taps right = try to move 1 column right
+        let attemptedCol: Int
+        if tappedLeft {
+            attemptedCol = max(0, currentColumn - 1)
+        } else {
+            attemptedCol = min(2, currentColumn + 1)
+        }
 
-        // Player tapped left but next stair is to the right (or vice versa) = wrong!
-        if tappedLeft && nextIsRight {
+        // If the stair isn't where the player moved, they fall
+        if attemptedCol != nextCol {
             gameOver()
             return
         }
-        if !tappedLeft && nextIsLeft {
-            gameOver()
-            return
-        }
 
-        // Correct tap — move player
+        // Correct — land on the stair
         currentStairIndex = nextIndex
         currentColumn = nextCol
         score = nextIndex
