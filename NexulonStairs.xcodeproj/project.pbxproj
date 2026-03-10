@@ -12,6 +12,7 @@
 		A1000003 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003; };
 		A1000004 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000004; };
 		A1000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000005; };
+		A1000007 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A2000004 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		A2000005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2000007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2000008 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A2000010 /* NexulonStairs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NexulonStairs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				A2000001 /* AppDelegate.swift */,
+				A2000008 /* SceneDelegate.swift */,
 				A2000002 /* GameViewController.swift */,
 				A2000003 /* GameScene.swift */,
 				A2000004 /* MenuScene.swift */,
@@ -137,6 +140,7 @@
 				A1000002 /* GameViewController.swift in Sources */,
 				A1000003 /* GameScene.swift in Sources */,
 				A1000004 /* MenuScene.swift in Sources */,
+				A1000007 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
