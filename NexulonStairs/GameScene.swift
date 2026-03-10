@@ -171,7 +171,6 @@ class GameScene: SKScene {
         addChild(ground)
 
         // Generate stairs going up
-        var lastX = size.width / 2 - stairWidth / 2
         var lastLeft = true
 
         for i in 0..<50 {
@@ -188,7 +187,6 @@ class GameScene: SKScene {
             stairs.append(stair)
             addChild(stair)
 
-            lastX = x
             lastLeft = goLeft
             highestStairY = y
         }
@@ -383,13 +381,6 @@ class GameScene: SKScene {
                 return true
             }
             return false
-        }
-
-        // Reindex after removal
-        if let firstStair = stairs.first,
-           let name = firstStair.name,
-           let idx = Int(name.replacingOccurrences(of: "stair_", with: "")) {
-            // Adjust currentStairIndex relative to array
         }
     }
 

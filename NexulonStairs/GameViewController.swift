@@ -2,20 +2,18 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private var hasPresented = false
 
-        guard let skView = self.view as? SKView else {
-            let skView = SKView(frame: self.view.bounds)
-            skView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            self.view.addSubview(skView)
-            presentScene(in: skView)
-            return
-        }
-        presentScene(in: skView)
+    override func loadView() {
+        self.view = SKView()
     }
 
-    private func presentScene(in skView: SKView) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard !hasPresented, let skView = self.view as? SKView else { return }
+        hasPresented = true
+
         let scene = MenuScene(size: skView.bounds.size)
         scene.scaleMode = .aspectFill
         skView.presentScene(scene)
@@ -28,9 +26,5 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-
-    override func loadView() {
-        self.view = SKView()
     }
 }
