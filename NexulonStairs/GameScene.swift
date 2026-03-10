@@ -7,10 +7,11 @@ class GameScene: SKScene {
     private let stairHeight: CGFloat = 22
     private let stairGap: CGFloat = 55
     private let playerSize: CGFloat = 20
-    // Fire tuned so player has ~2 seconds of breathing room per stair
-    private let initialFireSpeed: CGFloat = 27.5
-    private let maxFireSpeed: CGFloat = 110
-    private let fireAcceleration: CGFloat = 0.4
+    // Fire speed ramps from 1.0s/stair to 0.5s/stair by stair 100
+    // stairGap(55) / speed = reaction time
+    private let initialFireSpeed: CGFloat = 55    // 1.0s per stair at start
+    private let maxFireSpeed: CGFloat = 110       // 0.5s per stair (hard cap)
+    private let fireAcceleration: CGFloat = 0.55  // reaches max around stair 100
 
     // 3-column layout positions (calculated in didMove)
     private var columnX: [CGFloat] = []  // [left, center, right]
@@ -33,7 +34,7 @@ class GameScene: SKScene {
     private var score = 0
     private var isGameOver = false
     private var fireYPosition: CGFloat = 0
-    private var fireSpeed: CGFloat = 27.5
+    private var fireSpeed: CGFloat = 55
     private var previousHighScore = 0
     private var isNewBest = false
     private var lastUpdateTime: TimeInterval = 0
