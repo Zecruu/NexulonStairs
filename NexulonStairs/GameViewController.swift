@@ -2,28 +2,21 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-    private var skView: SKView!
-    private var hasPresented = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.08, green: 0.08, blue: 0.12, alpha: 1.0)
 
-        skView = SKView(frame: view.bounds)
+        let skView = SKView(frame: view.bounds)
         skView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(skView)
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        guard !hasPresented else { return }
-        hasPresented = true
-
-        let scene = MenuScene(size: skView.bounds.size)
-        scene.scaleMode = .resizeFill
+        // Use a fixed scene size — aspectFill scales it to any device
+        let scene = MenuScene(size: CGSize(width: 390, height: 844))
+        scene.scaleMode = .aspectFill
         skView.presentScene(scene)
         skView.ignoresSiblingOrder = true
+        skView.showsFPS = true
+        skView.showsNodeCount = true
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
