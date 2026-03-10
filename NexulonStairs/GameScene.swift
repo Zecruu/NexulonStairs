@@ -328,14 +328,17 @@ class GameScene: SKScene {
             gameOver()
         }
 
-        // Clean up stairs below fire
+        // Clean up stairs below fire, adjust currentStairIndex
+        var removedCount = 0
         stairs.removeAll { info in
             if info.node.position.y < fireYPosition - 100 {
                 info.node.removeFromParent()
+                removedCount += 1
                 return true
             }
             return false
         }
+        currentStairIndex -= removedCount
     }
 
     // MARK: - Game Over
